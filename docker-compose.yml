@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  odoo:
+    image: odoo:17.0
+    container_name: odoo-educaty-app
+    environment:
+      VIRTUAL_HOST: ${DOMAIN}
+      VIRTUAL_PORT: 8069
+      LETSENCRYPT_HOST: ${DOMAIN}
+      LETSENCRYPT_EMAIL: ${EMAIL}
+    volumes:
+      - odoo-data:/var/lib/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf:ro
+      - ./addons:/mnt/extra-addons
+    expose:
+      - "8069"
+    networks:
+      - proxy
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
+
+volumes:
+  odoo-data:

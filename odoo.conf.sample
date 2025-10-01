@@ -1,0 +1,23 @@
+﻿[options]
+admin_passwd = CHANGE_ME
+
+; --- Base de datos central (postgres-central en la red proxy) ---
+db_host = postgres-central
+db_port = 5432
+db_user = david
+db_password = CHANGE_ME
+
+; Habilitamos el gestor de BDs SOLO para restaurar el zip
+list_db = False
+dbfilter = ^educaty$
+
+; Addons core +  custom (montados en /mnt/extra-addons)
+addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
+
+; DetrÃ¡s del reverse proxy
+proxy_mode = True
+http_port = 8069
+workers = 0
+
+log_level = info
+db_name = educaty
